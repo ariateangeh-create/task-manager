@@ -1,70 +1,239 @@
-<<<<<<< HEAD
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# WAD 2 Final Project – Task Manager System
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+## Project Title
+Task Manager System
 
-## About Laravel
+## Project Description
+The Task Manager System is a web-based Laravel application developed for the WAD 2 Final Project requirement. The system allows authenticated users to manage their personal tasks through complete CRUD operations.
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+This project demonstrates the proper implementation of Laravel core features including:
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+* CRUD Operations
+* Authentication
+* Middleware
+* Authorization (Policies/Gates)
+* Eloquent Relationships
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+The application ensures that users can only access and manage their own tasks securely.
 
-## Learning Laravel
+# Implemented Features
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+## CRUD Operations
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+The system allows users to:
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+* Create tasks
+* View tasks
+* Update tasks
+* Delete tasks
 
-## Laravel Sponsors
+## Authentication
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+Implemented using Laravel Breeze:
 
-### Premium Partners
+* User Registration
+* User Login
+* User Logout
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[WebReinvent](https://webreinvent.com/)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Jump24](https://jump24.co.uk)**
-- **[Redberry](https://redberry.international/laravel/)**
-- **[Active Logic](https://activelogic.com)**
-- **[byte5](https://byte5.de)**
-- **[OP.GG](https://op.gg)**
+## Middleware
 
-## Contributing
+Routes are protected using Laravel middleware:
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+* Only authenticated users can access the task management system.
 
-## Code of Conduct
+## Authorization
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+Authorization is implemented using Laravel Policies:
 
-## Security Vulnerabilities
+* Users can only edit or delete their own tasks.
+* Unauthorized access is restricted.
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+## Eloquent Relationships
 
-## License
+Implemented One-to-Many Relationship:
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
-=======
-# task-manager
->>>>>>> 8cddec1b2dfb3e5ebef5eedad45e82d918835012
+* One User has many Tasks
+* One Task belongs to one User
+
+# System Functionalities
+
+## User Functionalities
+
+### Authentication
+
+* Register account
+* Login account
+* Logout account
+
+### Task Management
+
+* Add Task
+* Edit Task
+* Delete Task
+* View Personal Tasks
+
+# Technologies Used
+
+* Laravel 10
+* PHP 8.1
+* MySQL
+* Blade Template Engine
+* Laravel Breeze
+* Tailwind CSS
+
+# Database Structure
+
+## Users Table
+
+| Column     | Description              |
+| ---------- | ------------------------ |
+| id         | User ID                  |
+| name       | User Name                |
+| email      | User Email               |
+| password   | User Password            |
+| timestamps | Created and Updated Time |
+
+
+## Tasks Table
+
+| Column      | Description                  |
+| ----------- | ---------------------------- |
+| id          | Task ID                      |
+| title       | Task Title                   |
+| description | Task Description             |
+| is_done     | Task Status                  |
+| user_id     | Foreign Key from Users Table |
+| timestamps  | Created and Updated Time     |
+
+# Eloquent Relationship
+
+## User Model
+
+```php
+public function tasks()
+{
+    return $this->hasMany(Task::class);
+}
+```
+
+## Task Model
+
+```php
+public function user()
+{
+    return $this->belongsTo(User::class);
+}
+```
+
+---
+
+# 🔐 Authorization and Security
+
+The system uses Laravel authentication and authorization to ensure security.
+
+### Security Implementations
+
+* Authentication Middleware
+* CSRF Protection
+* Task Ownership Validation
+* Policy-based Authorization
+
+
+# Installation Guide
+
+## 1. Clone Repository
+
+```bash
+git clone https://github.com/ariateangeh-create/task-manager.git
+cd task-manager
+```
+
+## 2. Install Dependencies
+
+```bash
+composer install
+npm install
+npm run dev
+```
+
+## 3. Configure Environment
+
+```bash
+cp .env.example .env
+php artisan key:generate
+```
+
+## 4. Setup Database
+
+Update `.env` file:
+
+```env
+DB_DATABASE=task_manager
+DB_USERNAME=root
+DB_PASSWORD=
+```
+
+## 5. Run Migrations
+
+```bash
+php artisan migrate
+```
+
+## 6. Start Server
+
+```bash
+php artisan serve
+```
+
+# 🧪 How to Use the System
+
+1. Register a new account
+2. Login using your account
+3. Open the dashboard
+4. Create a task
+5. Edit or delete tasks
+6. Logout securely
+
+# 📸 Screenshots
+
+## Login Page
+<img width="723" height="488" alt="image" src="https://github.com/user-attachments/assets/266c679c-146b-4410-847a-5ba9db6f9597" />
+
+## Dashboard
+<img width="1295" height="295" alt="image" src="https://github.com/user-attachments/assets/33dc302d-fa82-49c0-abbe-ff4f6b88af3b" />
+
+## Task List
+<img width="1261" height="608" alt="image" src="https://github.com/user-attachments/assets/e8f2f63a-a85e-4b96-871c-22e493862f25" />
+
+## Create Task Page
+<img width="1228" height="434" alt="image" src="https://github.com/user-attachments/assets/1ae1ddac-2f3d-4276-93a0-562f863f5cf2" />
+
+# 🎥 Screen Recording Demonstration
+https://drive.google.com/file/d/1u8Hgtwf1MlCDwB9cmtCV98kfdwcnL3yP/view?usp=sharing
+
+# 📌 Evaluation Requirements Coverage
+
+| Requirement            | Status        |
+| ---------------------- | ------------- |
+| CRUD Operations        | ✅ Implemented |
+| Authentication         | ✅ Implemented |
+| Middleware             | ✅ Implemented |
+| Authorization          | ✅ Implemented |
+| Eloquent Relationships | ✅ Implemented |
+
+# Developer Information
+| Information | Details |
+|---|---|
+| Student Name | Angelene Ariate |
+| Subject | Web Application Development 2 |
+| Project Type | Laravel Final Project |
+| System Title | Task Manager System |
+
+# Conclusion
+The Task Manager System successfully demonstrates the implementation of core Laravel concepts required in Web Application Development 2.
+The project includes authentication, middleware protection, authorization, CRUD functionalities, and Eloquent relationships while
+ensuring secure task ownership and access control.
+
+# GitHub Repository
+Repository Link:
+[https://github.com/ariateangeh-create/task-manager](https://github.com/ariateangeh-create/task-manager)
